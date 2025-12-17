@@ -38,7 +38,7 @@ function App() {
     <div className="h-screen w-screen flex flex-col bg-gray-100">
 
       {/* ================= HEADER ================= */}
-      <header className="h-10 bg-slate-300 text-black flex items-center justify-between px-6">
+      <header className="h-15 bg-slate-300 text-black flex items-center justify-between px-6">
         <Link to="/" className="text-2xl font-bold">
           SHANA HOME MADE PRODUCT
         </Link>
@@ -136,7 +136,7 @@ function App() {
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer className="h-10 bg-slate-300 text-gray-500 text-center text-2xl flex items-center justify-center">
+      <footer className="h-15 bg-slate-300 text-gray-500 text-center text-2xl flex items-center justify-center">
         © SHANA HOME MADE PRODUCT 24
       </footer>
     </div>
