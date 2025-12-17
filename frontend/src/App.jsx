@@ -137,7 +137,7 @@ function App() {
 
       {/* ================= FOOTER ================= */}
       <footer className="h-50 bg-slate-300 text-gray-500 text-center text-6xl flex items-center justify-center">
-        © SHANA HOME MADE PRODUCT
+        © SHANA HOME MADE PRODUCT 24
       </footer>
     </div>
   );
