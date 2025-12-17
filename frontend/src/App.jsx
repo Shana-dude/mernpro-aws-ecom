@@ -44,7 +44,7 @@ function App() {
         </Link>
 
         <div className="flex gap-3 items-center">
-          <Link to="/cart" className="bg-slate-300 text-black font-semibold text-3xl px-10 py-10 rounded">
+          <Link to="/cart" className="bg-slate-300 text-black font-semibold text-3xl px-6 py-6 rounded">
             Cart ({cart.length})
           </Link>
 
@@ -59,14 +59,14 @@ function App() {
             <>
               <Link
                 to="/login"
-                className="bg-green-200 text-black font-semibold text-3xl px-10 py-10 rounded"
+                className="bg-green-200 text-black font-semibold text-3xl px-6 py-6 rounded"
               >
                 Login
               </Link>
 
               <Link
                 to="/register"
-                className="bg-blue-200 text-black font-semibold text-3xl px-10 py-10 rounded"
+                className="bg-blue-200 text-black font-semibold text-3xl px-6 py-6 rounded"
               >
                 Register
               </Link>
@@ -76,7 +76,7 @@ function App() {
           {/* 🔐 PROTECTED ADD PRODUCT */}
           <Link
             to="/addproduct"
-            className="bg-yellow-400 text-black font-semibold text-3xl px-10 py-10 rounded"
+            className="bg-yellow-400 text-black font-semibold text-3xl px-6 py-6 rounded"
           >
             Add Product
           </Link>
