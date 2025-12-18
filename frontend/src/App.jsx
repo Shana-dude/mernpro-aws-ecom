@@ -34,116 +34,117 @@ function App() {
     <div className="min-h-screen flex flex-col bg-gray-100">
 
       {/* ================= HEADER ================= */}
-      <header className="bg-zinc-800 text-gray-200 py-4 px-8 shadow-md flex flex-wrap items-center justify-between">
-        <Link to="/" className="text-2xl font-semibold hover:text-amber-400">
-          🛖 SHANA HOME MADE PRODUCT
-        </Link>
-
-        <div className="flex items-center gap-4">
-          <Link
-            to="/cart"
-            className="px-4 py-1 rounded bg-zinc-200 text-black"
-          >
-            Cart ({cart.length})
+      <header className="bg-zinc-800 text-gray-200 shadow-md">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between">
+          <Link to="/" className="text-2xl font-semibold hover:text-amber-400">
+            🛖 SHANA HOME MADE PRODUCT
           </Link>
 
-          {isLoggedIn ? (
-            <button
-              onClick={logout}
-              className="px-4 py-1 bg-green-200 rounded"
+          <div className="flex items-center gap-4 mt-2 md:mt-0">
+            <Link
+              to="/cart"
+              className="px-4 py-1 rounded bg-zinc-200 text-black"
             >
-              Logout
-            </button>
-          ) : (
-            <>
-              <Link to="/login" className="px-4 py-1 bg-green-200 rounded">
-                Login
-              </Link>
-              <Link to="/register" className="px-4 py-1 bg-blue-200 rounded">
-                Register
-              </Link>
-            </>
-          )}
+              Cart ({cart.length})
+            </Link>
 
-          <Link
-            to="/addproduct"
-            className="px-4 py-1 bg-amber-200 rounded text-black"
-          >
-            Add Product
-          </Link>
+            {isLoggedIn ? (
+              <button
+                onClick={logout}
+                className="px-4 py-1 bg-green-200 rounded"
+              >
+                Logout
+              </button>
+            ) : (
+              <>
+                <Link to="/login" className="px-4 py-1 bg-green-200 rounded">
+                  Login
+                </Link>
+                <Link to="/register" className="px-4 py-1 bg-blue-200 rounded">
+                  Register
+                </Link>
+              </>
+            )}
+
+            <Link
+              to="/addproduct"
+              className="px-4 py-1 bg-amber-200 rounded text-black"
+            >
+              Add Product
+            </Link>
+          </div>
         </div>
       </header>
 
       {/* ================= MAIN ================= */}
       <main className="flex-1">
+        <div className="max-w-7xl mx-auto px-6 py-10">
 
-        <Routes>
+          <Routes>
+            <Route
+              path="/"
+              element={<Products cart={cart} setCart={setCart} />}
+            />
 
-          {/* FULL WIDTH PAGES (NO CHANGE) */}
-          <Route
-            path="/"
-            element={<Products cart={cart} setCart={setCart} />}
-          />
+            <Route
+              path="/product/:id"
+              element={<Product cart={cart} setCart={setCart} />}
+            />
 
-          <Route
-            path="/product/:id"
-            element={<Product cart={cart} setCart={setCart} />}
-          />
-
-          {/* CENTERED PAGES */}
-          <Route
-            path="/login"
-            element={
-              <div className="min-h-[70vh] flex justify-center items-center">
-                <Login setIsLoggedIn={setIsLoggedIn} />
-              </div>
-            }
-          />
-
-          <Route
-            path="/register"
-            element={
-              <div className="min-h-[70vh] flex justify-center items-center">
-                <Register />
-              </div>
-            }
-          />
-
-          <Route
-            path="/addproduct"
-            element={
-              <ProtectedRoute>
-                <div className="min-h-[70vh] flex justify-center items-center">
-                  <AddProduct />
+            <Route
+              path="/login"
+              element={
+                <div className="min-h-[60vh] flex justify-center items-center">
+                  <Login setIsLoggedIn={setIsLoggedIn} />
                 </div>
-              </ProtectedRoute>
-            }
-          />
+              }
+            />
 
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute>
-                <Cart cart={cart} setCart={setCart} />
-              </ProtectedRoute>
-            }
-          />
+            <Route
+              path="/register"
+              element={
+                <div className="min-h-[60vh] flex justify-center items-center">
+                  <Register />
+                </div>
+              }
+            />
 
-          <Route
-            path="/buynow/:id"
-            element={
-              <ProtectedRoute>
-                <BuyNow />
-              </ProtectedRoute>
-            }
-          />
+            <Route
+              path="/addproduct"
+              element={
+                <ProtectedRoute>
+                  <div className="min-h-[60vh] flex justify-center items-center">
+                    <AddProduct />
+                  </div>
+                </ProtectedRoute>
+              }
+            />
 
-        </Routes>
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <Cart cart={cart} setCart={setCart} />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/buynow/:id"
+              element={
+                <ProtectedRoute>
+                  <BuyNow />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+
+        </div>
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer className="bg-zinc-900 text-gray-300 py-14 px-10">
-        <div className="max-w-7xl mx-auto text-center text-sm">
+      <footer className="bg-zinc-900 text-gray-300">
+        <div className="max-w-7xl mx-auto px-6 py-10 text-center text-sm">
           ©2024 Shana Home-Made Products. All rights reserved.
         </div>
       </footer>
