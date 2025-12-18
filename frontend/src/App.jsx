@@ -11,19 +11,23 @@ import AddProduct from "./components/AddProduct";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
+  // 🛒 CART STATE
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
   });
 
+  // 🔐 AUTH STATE
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
 
+  // 💾 SAVE CART
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  // 🚪 LOGOUT
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -36,7 +40,10 @@ function App() {
       {/* ================= HEADER ================= */}
       <header className="bg-zinc-800 text-gray-200 shadow-md">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between">
-          <Link to="/" className="text-2xl font-semibold hover:text-amber-400">
+          <Link
+            to="/"
+            className="text-2xl font-semibold tracking-wide hover:text-amber-400 transition"
+          >
             🛖 SHANA HOME MADE PRODUCT
           </Link>
 
@@ -51,16 +58,23 @@ function App() {
             {isLoggedIn ? (
               <button
                 onClick={logout}
-                className="px-4 py-1 bg-green-200 rounded"
+                className="px-4 py-1 bg-green-200 hover:bg-green-400 rounded text-sm font-medium"
               >
                 Logout
               </button>
             ) : (
               <>
-                <Link to="/login" className="px-4 py-1 bg-green-200 rounded">
+                <Link
+                  to="/login"
+                  className="px-4 py-1 bg-green-200 hover:bg-green-400 rounded text-sm font-medium"
+                >
                   Login
                 </Link>
-                <Link to="/register" className="px-4 py-1 bg-blue-200 rounded">
+
+                <Link
+                  to="/register"
+                  className="px-4 py-1 bg-blue-200 hover:bg-blue-400 rounded text-sm font-medium"
+                >
                   Register
                 </Link>
               </>
@@ -68,7 +82,7 @@ function App() {
 
             <Link
               to="/addproduct"
-              className="px-4 py-1 bg-amber-200 rounded text-black"
+              className="px-4 py-1 bg-amber-200 hover:bg-amber-300 text-black rounded text-sm font-semibold"
             >
               Add Product
             </Link>
@@ -79,7 +93,6 @@ function App() {
       {/* ================= MAIN ================= */}
       <main className="flex-1">
         <div className="max-w-7xl mx-auto px-6 py-10">
-
           <Routes>
             <Route
               path="/"
@@ -138,14 +151,13 @@ function App() {
               }
             />
           </Routes>
-
         </div>
       </main>
 
       {/* ================= FOOTER ================= */}
       <footer className="bg-zinc-900 text-gray-300">
         <div className="max-w-7xl mx-auto px-6 py-10 text-center text-sm">
-          ©2024 Shana Home-Made Products. All rights reserved.
+          © 2024 Shana Home-Made Products. All rights reserved.
         </div>
       </footer>
 
