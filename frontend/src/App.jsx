@@ -60,7 +60,7 @@ function App() {
               {isLoggedIn ? (
                 <button
                   onClick={logout}
-                  className="bg-white hover:bg-gray-100 text-black px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors border border-gray-300"
+                  className="bg-white hover:bg-gray-200 text-black px-4 sm:px-5 py-2 rounded-md text-sm sm:text-base font-semibold transition-colors border-2 border-gray-400 shadow-sm"
                 >
                   Logout
                 </button>
@@ -100,7 +100,7 @@ function App() {
           <Route
             path="/"
             element={
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
+              <div className="w-full px-4 sm:px-6 lg:px-12 py-8 min-h-screen">
                 <Products cart={cart} setCart={setCart} />
               </div>
             }
@@ -109,7 +109,7 @@ function App() {
           <Route
             path="/product/:id"
             element={
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
+              <div className="w-full px-4 sm:px-6 lg:px-12 py-8 min-h-screen">
                 <Product cart={cart} setCart={setCart} />
               </div>
             }
@@ -139,7 +139,7 @@ function App() {
             path="/cart"
             element={
               <ProtectedRoute>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
+                <div className="w-full px-4 sm:px-6 lg:px-12 py-8 min-h-screen">
                   <Cart cart={cart} setCart={setCart} />
                 </div>
               </ProtectedRoute>
@@ -150,7 +150,7 @@ function App() {
             path="/buynow/:id"
             element={
               <ProtectedRoute>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 min-h-screen">
+                <div className="w-full px-4 sm:px-6 lg:px-12 py-8 min-h-screen">
                   <BuyNow />
                 </div>
               </ProtectedRoute>
