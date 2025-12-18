@@ -11,19 +11,23 @@ import AddProduct from "./components/AddProduct";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
+  // 🛒 CART STATE
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
   });
 
+  // 🔐 AUTH STATE (JWT BASED)
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
 
+  // 💾 SAVE CART
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  // 🚪 LOGOUT
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -31,27 +35,24 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-100">
+    <div className="min-h-screen flex flex-col bg-gray-50">
 
       {/* ================= HEADER ================= */}
-      <header className="bg-zinc-900 text-gray-200 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
-          <div className="flex justify-between items-center">
+      <header className="bg-zinc-900 text-white shadow-lg sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link
-              to="/"
-              className="text-xl sm:text-2xl font-semibold hover:text-amber-400 transition-colors flex items-center gap-2"
-            >
-              <span className="text-2xl">🛖</span>
+            <Link to="/" className="flex items-center space-x-2 text-xl sm:text-2xl font-bold hover:text-amber-400 transition-colors">
+              <span>🛖</span>
               <span className="hidden sm:inline">SHANA HOME MADE PRODUCT</span>
               <span className="sm:hidden">SHANA</span>
             </Link>
 
-            {/* Navigation Buttons */}
+            {/* Navigation */}
             <nav className="flex items-center gap-2 sm:gap-3">
-              <Link
-                to="/cart"
-                className="px-3 sm:px-4 py-2 text-sm sm:text-base rounded bg-zinc-700 hover:bg-zinc-600 transition-colors font-medium"
+              <Link 
+                to="/cart" 
+                className="bg-zinc-700 hover:bg-zinc-600 text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors"
               >
                 Cart ({cart.length})
               </Link>
@@ -59,7 +60,7 @@ function App() {
               {isLoggedIn ? (
                 <button
                   onClick={logout}
-                  className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-red-600 hover:bg-red-500 rounded transition-colors font-medium"
+                  className="bg-red-600 hover:bg-red-500 text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors"
                 >
                   Logout
                 </button>
@@ -67,13 +68,14 @@ function App() {
                 <>
                   <Link
                     to="/login"
-                    className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-green-600 hover:bg-green-500 rounded transition-colors font-medium"
+                    className="bg-green-600 hover:bg-green-500 text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors"
                   >
                     Login
                   </Link>
+
                   <Link
                     to="/register"
-                    className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-blue-600 hover:bg-blue-500 rounded transition-colors font-medium"
+                    className="bg-blue-600 hover:bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors"
                   >
                     Register
                   </Link>
@@ -82,7 +84,7 @@ function App() {
 
               <Link
                 to="/addproduct"
-                className="px-3 sm:px-4 py-2 text-sm sm:text-base bg-amber-400 hover:bg-amber-300 text-black rounded transition-colors font-medium"
+                className="bg-amber-500 hover:bg-amber-400 text-black px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-semibold transition-colors"
               >
                 Add Product
               </Link>
@@ -92,86 +94,154 @@ function App() {
       </header>
 
       {/* ================= MAIN ================= */}
-      <main className="flex-1 flex flex-col">
-        <Routes>
-          {/* PRODUCTS - Full Width */}
-          <Route
-            path="/"
-            element={
-              <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
-                <Products cart={cart} setCart={setCart} />
-              </div>
-            }
-          />
+      <main className="flex-1 w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <Routes>
+            {/* PUBLIC */}
+            <Route
+              path="/"
+              element={<Products cart={cart} setCart={setCart} />}
+            />
 
-          <Route
-            path="/product/:id"
-            element={
-              <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
-                <Product cart={cart} setCart={setCart} />
-              </div>
-            }
-          />
+            <Route
+              path="/product/:id"
+              element={<Product cart={cart} setCart={setCart} />}
+            />
 
-          {/* AUTH (CENTERED WITH FULL HEIGHT) */}
-          <Route
-            path="/login"
-            element={
-              <div className="flex-1 flex justify-center items-center px-4 py-8">
-                <Login setIsLoggedIn={setIsLoggedIn} />
-              </div>
-            }
-          />
+            {/* AUTH */}
+            <Route
+              path="/login"
+              element={
+                <div className="flex justify-center items-center min-h-[calc(100vh-16rem)]">
+                  <Login setIsLoggedIn={setIsLoggedIn} />
+                </div>
+              }
+            />
 
-          <Route
-            path="/register"
-            element={
-              <div className="flex-1 flex justify-center items-center px-4 py-8">
-                <Register />
-              </div>
-            }
-          />
+            <Route 
+              path="/register" 
+              element={
+                <div className="flex justify-center items-center min-h-[calc(100vh-16rem)]">
+                  <Register />
+                </div>
+              } 
+            />
 
-          {/* PROTECTED - Full Width */}
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute>
-                <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+            {/* PROTECTED */}
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
                   <Cart cart={cart} setCart={setCart} />
-                </div>
-              </ProtectedRoute>
-            }
-          />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route
-            path="/buynow/:id"
-            element={
-              <ProtectedRoute>
-                <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+            <Route
+              path="/buynow/:id"
+              element={
+                <ProtectedRoute>
                   <BuyNow />
-                </div>
-              </ProtectedRoute>
-            }
-          />
+                </ProtectedRoute>
+              }
+            />
 
-          <Route
-            path="/addproduct"
-            element={
-              <ProtectedRoute>
-                <div className="flex-1 flex justify-center items-center px-4 py-8">
-                  <AddProduct />
-                </div>
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+            <Route
+              path="/addproduct"
+              element={
+                <ProtectedRoute>
+                  <div className="flex justify-center items-center min-h-[calc(100vh-16rem)]">
+                    <AddProduct />
+                  </div>
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </div>
       </main>
 
       {/* ================= FOOTER ================= */}
       <footer className="bg-zinc-900 text-gray-300 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 text-center text-sm">
-          <p>© 2024 Shana Home-Made Products | All rights reserved</p>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
+
+            {/* Brand */}
+            <div className="lg:col-span-1">
+              <h2 className="text-xl font-semibold text-white">SHANA HOME-MADE</h2>
+              <p className="mt-4 text-sm leading-6 text-gray-400">
+                Freshly made home products crafted with love —  
+                pure, safe and full of natural goodness.
+              </p>
+              <button className="mt-3 text-sm text-amber-400 hover:text-amber-300 transition-colors">
+                read more →
+              </button>
+            </div>
+
+            {/* Discover */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">Discover</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Shop</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Our Products</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Special Offers</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Support</li>
+              </ul>
+            </div>
+
+            {/* About */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">About</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Our Story</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Team</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Careers</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Blog</li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">Resources</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Ingredients</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Hand-Made Quality</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Shipping</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Privacy</li>
+              </ul>
+            </div>
+
+            {/* Social */}
+            <div>
+              <h3 className="font-semibold text-white mb-3">Social</h3>
+              <ul className="space-y-2 text-sm text-gray-400">
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Facebook</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Instagram</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">WhatsApp</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">YouTube</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Partners */}
+          <div className="border-t border-zinc-700 mt-10 pt-6 text-sm text-center">
+            <p className="text-zinc-400">Our Partners:</p>
+            <p className="mt-2 space-x-4">
+              <span className="text-gray-400">Partner 01</span>
+              <span className="text-gray-400">Partner 02</span>
+              <span className="text-gray-400">Partner 03</span>
+              <span className="text-amber-400 hover:text-amber-300 cursor-pointer transition-colors">See All →</span>
+            </p>
+          </div>
+
+          {/* Bottom */}
+          <div className="border-t border-zinc-700 mt-8 pt-6 flex flex-col md:flex-row justify-between text-xs text-zinc-500">
+            <p>©2024 Shana Home-Made Products | All rights reserved</p>
+            <div className="space-x-6 mt-4 md:mt-0">
+              <span className="hover:text-amber-400 cursor-pointer transition-colors">Terms</span>
+              <span className="hover:text-amber-400 cursor-pointer transition-colors">Privacy</span>
+              <span className="hover:text-amber-400 cursor-pointer transition-colors">Compliance</span>
+            </div>
+          </div>
         </div>
       </footer>
 
