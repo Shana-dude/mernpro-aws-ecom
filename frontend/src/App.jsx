@@ -37,49 +37,53 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       {/* ================= HEADER ================= */}
-      <header className="bg-slate-200 py-4 px-6 shadow-sm flex flex-wrap items-center justify-between">
-        <Link to="/" className="text-3xl font-bold text-blue-700">
-          🛖 SHANA HOME MADE PRODUCT
+     <header className="bg-zinc-900 text-gray-200 py-4 px-6 shadow flex flex-wrap items-center justify-between">
+  <Link to="/" className="text-2xl font-bold hover:text-amber-400 transition">
+    🛖 SHANA HOME-MADE PRODUCT
+  </Link>
+
+  <div className="flex items-center gap-4 mt-2 md:mt-0">
+    <Link
+      to="/cart"
+      className="text-lg font-medium px-3 py-1 rounded bg-zinc-700 hover:bg-zinc-600 transition"
+    >
+      Cart ({cart.length})
+    </Link>
+
+    {isLoggedIn ? (
+      <button
+        onClick={logout}
+        className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded"
+      >
+        Logout
+      </button>
+    ) : (
+      <>
+        <Link
+          to="/login"
+          className="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded font-medium"
+        >
+          Login
         </Link>
 
-        <div className="flex items-center gap-4 mt-2 md:mt-0">
-          <Link
-            to="/cart"
-            className="text-xl font-semibold px-3 py-1 rounded bg-blue-100"
-          >
-            Cart ({cart.length})
-          </Link>
+        <Link
+          to="/register"
+          className="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded font-medium"
+        >
+          Register
+        </Link>
+      </>
+    )}
 
-          {isLoggedIn ? (
-            <button onClick={logout} className="bg-red-500 text-white px-3 py-1 rounded">
-              Logout
-            </button>
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="bg-green-400 text-black font-semibold px-3 py-1 rounded"
-              >
-                Login
-              </Link>
+    <Link
+      to="/addproduct"
+      className="bg-amber-400 hover:bg-amber-300 text-black font-semibold px-3 py-1 rounded"
+    >
+      Add Product
+    </Link>
+  </div>
+</header>
 
-              <Link
-                to="/register"
-                className="bg-blue-400 text-white font-semibold px-3 py-1 rounded"
-              >
-                Register
-              </Link>
-            </>
-          )}
-
-          <Link
-            to="/addproduct"
-            className="bg-yellow-400 text-black font-semibold px-3 py-1 rounded"
-          >
-            Add Product
-          </Link>
-        </div>
-      </header>
 
       {/* ================= MAIN ================= */}
       <main className="flex-1 px-4 py-6">
@@ -129,86 +133,91 @@ function App() {
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer className="bg-zinc-900 text-gray-300 py-12 px-6">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
-          {/* Brand */}
-          <div>
-            <h2 className="text-xl font-semibold">SHANA HOME-MADE</h2>
-            <p className="mt-4 text-sm leading-6">
-              Freshly made home products crafted with love —
-              pure, safe and full of natural goodness.
-            </p>
-            <button className="mt-3 text-sm text-amber-400 hover:text-amber-300">
-              read more →
-            </button>
-          </div>
+     <footer className="bg-zinc-900 text-gray-300 py-14 px-10">
+  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10">
 
-          {/* Discover */}
-          <div>
-            <h3 className="font-semibold mb-3">Discover</h3>
-            <ul className="space-y-2 text-sm">
-              <li>Shop</li>
-              <li>Our Products</li>
-              <li>Special Offers</li>
-              <li>Support</li>
-            </ul>
-          </div>
+    {/* Brand */}
+    <div>
+      <h2 className="text-xl font-semibold tracking-wide">SHANA HOME-MADE</h2>
+      <p className="mt-4 text-sm leading-6">
+        Freshly made home products crafted with love —
+        pure, safe and full of natural goodness.
+      </p>
+      <button className="mt-4 bg-amber-400 text-black text-sm px-4 py-1 rounded hover:bg-amber-300 transition">
+        read more →
+      </button>
+    </div>
 
-          {/* About */}
-          <div>
-            <h3 className="font-semibold mb-3">About</h3>
-            <ul className="space-y-2 text-sm">
-              <li>Our Story</li>
-              <li>Team</li>
-              <li>Careers</li>
-              <li>Blog</li>
-            </ul>
-          </div>
+    {/* Discover */}
+    <div>
+      <h3 className="font-semibold mb-4 text-white">Discover</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="hover:text-white cursor-pointer">Shop</li>
+        <li className="hover:text-white cursor-pointer">Our Products</li>
+        <li className="hover:text-white cursor-pointer">Special Offers</li>
+        <li className="hover:text-white cursor-pointer">Support</li>
+      </ul>
+    </div>
 
-          {/* Resources */}
-          <div>
-            <h3 className="font-semibold mb-3">Resources</h3>
-            <ul className="space-y-2 text-sm">
-              <li>Ingredients</li>
-              <li>Hand-Made Quality</li>
-              <li>Shipping</li>
-              <li>Privacy</li>
-            </ul>
-          </div>
+    {/* About */}
+    <div>
+      <h3 className="font-semibold mb-4 text-white">About</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="hover:text-white cursor-pointer">Our Story</li>
+        <li className="hover:text-white cursor-pointer">Team</li>
+        <li className="hover:text-white cursor-pointer">Careers</li>
+        <li className="hover:text-white cursor-pointer">Blog</li>
+      </ul>
+    </div>
 
-          {/* Social */}
-          <div>
-            <h3 className="font-semibold mb-3">Social</h3>
-            <ul className="space-y-2 text-sm">
-              <li>Facebook</li>
-              <li>Instagram</li>
-              <li>WhatsApp</li>
-              <li>YouTube</li>
-            </ul>
-          </div>
-        </div>
+    {/* Resources */}
+    <div>
+      <h3 className="font-semibold mb-4 text-white">Resources</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="hover:text-white cursor-pointer">Ingredients</li>
+        <li className="hover:text-white cursor-pointer">Hand-Made Quality</li>
+        <li className="hover:text-white cursor-pointer">Shipping</li>
+        <li className="hover:text-white cursor-pointer">Privacy</li>
+      </ul>
+    </div>
 
-        {/* Partners */}
-        <div className="border-t border-zinc-700 mt-10 pt-6 text-sm text-center">
-          <p className="text-zinc-400">Our Partners:</p>
-          <p className="mt-2 space-x-4">
-            <span>Partner 01</span>
-            <span>Partner 02</span>
-            <span>Partner 03</span>
-            <span className="text-amber-300 cursor-pointer">See All →</span>
-          </p>
-        </div>
+    {/* Social */}
+    <div>
+      <h3 className="font-semibold mb-4 text-white">Social</h3>
+      <ul className="space-y-2 text-sm">
+        <li className="hover:text-white cursor-pointer">Facebook</li>
+        <li className="hover:text-white cursor-pointer">Instagram</li>
+        <li className="hover:text-white cursor-pointer">WhatsApp</li>
+        <li className="hover:text-white cursor-pointer">YouTube</li>
+      </ul>
+    </div>
+  </div>
 
-        {/* Bottom */}
-        <div className="border-t border-zinc-700 mt-8 pt-6 flex flex-col md:flex-row justify-between text-xs text-zinc-500">
-          <p>©2024 Shana Home-Made Products | All rights reserved</p>
-          <div className="space-x-6 mt-4 md:mt-0">
-            <span>Terms</span>
-            <span>Privacy</span>
-            <span>Compliance</span>
-          </div>
-        </div>
-      </footer>
+  {/* Partners */}
+  <div className="border-t border-zinc-700 mt-10 pt-8 text-sm text-center">
+    <p className="text-zinc-400 mb-2">Our Partners:</p>
+    <p className="space-x-5">
+      <span className="hover:text-white cursor-pointer">Partner 01</span>
+      <span className="hover:text-white cursor-pointer">Partner 02</span>
+      <span className="hover:text-white cursor-pointer">Partner 03</span>
+      <span className="text-amber-300 hover:text-amber-200 cursor-pointer">
+        See All →
+      </span>
+    </p>
+  </div>
+
+  {/* Copyright */}
+  <div className="border-t border-zinc-700 mt-10 pt-8 flex flex-col md:flex-row justify-between text-xs text-zinc-500">
+    <p>©2024 Shana Home-Made Products | All rights reserved</p>
+
+    <div className="space-x-6 mt-4 md:mt-0">
+      <span className="hover:text-white cursor-pointer">Terms</span>
+      <span className="hover:text-white cursor-pointer">Privacy</span>
+      <span className="hover:text-white cursor-pointer">Compliance</span>
+    </div>
+  </div>
+</footer>
+
     </div>
   );
 }
