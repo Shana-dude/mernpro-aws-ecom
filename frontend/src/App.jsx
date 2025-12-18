@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       {/* ================= HEADER ================= */}
-    <header className="bg-zinc-800 text-gray-200 py-4 px-8 shadow-md flex flex-wrap items-center justify-between">
+   <header className="bg-zinc-800 text-gray-200 py-4 px-8 shadow-md flex flex-wrap items-center justify-between">
   {/* Brand */}
   <Link
     to="/"
