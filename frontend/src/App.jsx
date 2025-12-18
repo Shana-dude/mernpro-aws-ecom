@@ -136,9 +136,88 @@ function App() {
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer className="h-15 bg-slate-300 text-gray-500 text-center text-2xl flex items-center justify-center">
-        © SHANA HOME MADE PRODUCT 24
-      </footer>
+      <footer className="bg-zinc-900 text-gray-300 py-12 px-6">
+  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
+
+    {/* Brand */}
+    <div>
+      <h2 className="text-xl font-semibold">SHANA HOME-MADE</h2>
+      <p className="mt-4 text-sm leading-6">
+        Freshly made home products crafted with love —  
+        pure, safe and full of natural goodness.
+      </p>
+      <button className="mt-3 text-sm text-amber-400 hover:text-amber-300">
+        read more →
+      </button>
+    </div>
+
+    {/* Discover */}
+    <div>
+      <h3 className="font-semibold mb-3">Discover</h3>
+      <ul className="space-y-2 text-sm">
+        <li>Shop</li>
+        <li>Our Products</li>
+        <li>Special Offers</li>
+        <li>Support</li>
+      </ul>
+    </div>
+
+    {/* About */}
+    <div>
+      <h3 className="font-semibold mb-3">About</h3>
+      <ul className="space-y-2 text-sm">
+        <li>Our Story</li>
+        <li>Team</li>
+        <li>Careers</li>
+        <li>Blog</li>
+      </ul>
+    </div>
+
+    {/* Resources */}
+    <div>
+      <h3 className="font-semibold mb-3">Resources</h3>
+      <ul className="space-y-2 text-sm">
+        <li>Ingredients</li>
+        <li>Hand-Made Quality</li>
+        <li>Shipping</li>
+        <li>Privacy</li>
+      </ul>
+    </div>
+
+    {/* Social */}
+    <div>
+      <h3 className="font-semibold mb-3">Social</h3>
+      <ul className="space-y-2 text-sm">
+        <li>Facebook</li>
+        <li>Instagram</li>
+        <li>WhatsApp</li>
+        <li>YouTube</li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Partners */}
+  <div className="border-t border-zinc-700 mt-10 pt-6 text-sm text-center">
+    <p className="text-zinc-400">Our Partners:</p>
+    <p className="mt-2 space-x-4">
+      <span>Partner 01</span>
+      <span>Partner 02</span>
+      <span>Partner 03</span>
+      <span className="text-amber-300 cursor-pointer">See All →</span>
+    </p>
+  </div>
+
+  {/* Bottom */}
+  <div className="border-t border-zinc-700 mt-8 pt-6 flex flex-col md:flex-row justify-between text-xs text-zinc-500">
+    <p>©2024 Shana Home-Made Products | All rights reserved</p>
+    <div className="space-x-6 mt-4 md:mt-0">
+      <span>Terms</span>
+      <span>Privacy</span>
+      <span>Compliance</span>
+    </div>
+  </div>
+</footer>
+
     </div>
   );
 }
