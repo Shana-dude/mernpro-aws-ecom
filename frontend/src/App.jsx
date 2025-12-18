@@ -35,11 +35,11 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="flex flex-col min-h-screen w-full bg-gray-50">
 
       {/* ================= HEADER ================= */}
-      <header className="bg-zinc-900 text-white shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="bg-zinc-900 text-white shadow-lg sticky top-0 z-50 w-full">
+        <div className="w-full px-6 lg:px-16">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2 text-xl sm:text-2xl font-bold hover:text-amber-400 transition-colors">
@@ -94,13 +94,13 @@ function App() {
       </header>
 
       {/* ================= MAIN ================= */}
-      <main className="flex-1 bg-gray-50">
+      <main className="flex-1 w-full bg-gray-50">
         <Routes>
           {/* PUBLIC */}
           <Route
             path="/"
             element={
-              <div className="w-full px-4 sm:px-6 lg:px-12 py-8 min-h-screen">
+              <div className="w-full px-6 lg:px-16 py-8 min-h-screen">
                 <Products cart={cart} setCart={setCart} />
               </div>
             }
@@ -109,7 +109,7 @@ function App() {
           <Route
             path="/product/:id"
             element={
-              <div className="w-full px-4 sm:px-6 lg:px-12 py-8 min-h-screen">
+              <div className="w-full px-6 lg:px-16 py-8 min-h-screen">
                 <Product cart={cart} setCart={setCart} />
               </div>
             }
@@ -119,7 +119,7 @@ function App() {
           <Route
             path="/login"
             element={
-              <div className="flex justify-center items-center min-h-screen px-4">
+              <div className="flex justify-center items-center min-h-screen px-4 w-full">
                 <Login setIsLoggedIn={setIsLoggedIn} />
               </div>
             }
@@ -128,7 +128,7 @@ function App() {
           <Route 
             path="/register" 
             element={
-              <div className="flex justify-center items-center min-h-screen px-4">
+              <div className="flex justify-center items-center min-h-screen px-4 w-full">
                 <Register />
               </div>
             } 
@@ -139,7 +139,7 @@ function App() {
             path="/cart"
             element={
               <ProtectedRoute>
-                <div className="w-full px-4 sm:px-6 lg:px-12 py-8 min-h-screen">
+                <div className="w-full px-6 lg:px-16 py-8 min-h-screen">
                   <Cart cart={cart} setCart={setCart} />
                 </div>
               </ProtectedRoute>
@@ -150,7 +150,7 @@ function App() {
             path="/buynow/:id"
             element={
               <ProtectedRoute>
-                <div className="w-full px-4 sm:px-6 lg:px-12 py-8 min-h-screen">
+                <div className="w-full px-6 lg:px-16 py-8 min-h-screen">
                   <BuyNow />
                 </div>
               </ProtectedRoute>
@@ -161,7 +161,7 @@ function App() {
             path="/addproduct"
             element={
               <ProtectedRoute>
-                <div className="flex justify-center items-center min-h-screen px-4">
+                <div className="flex justify-center items-center min-h-screen px-4 w-full">
                   <AddProduct />
                 </div>
               </ProtectedRoute>
@@ -171,8 +171,8 @@ function App() {
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer className="bg-zinc-900 text-gray-300 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <footer className="bg-zinc-900 text-gray-300 mt-auto w-full">
+        <div className="w-full px-6 lg:px-16 py-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
 
             {/* Brand */}
@@ -205,7 +205,7 @@ function App() {
                 <li className="hover:text-amber-400 transition-colors cursor-pointer">Our Story</li>
                 <li className="hover:text-amber-400 transition-colors cursor-pointer">Team</li>
                 <li className="hover:text-amber-400 transition-colors cursor-pointer">Careers</li>
-                <li className="hover:text-amber-400 transition-colors cursor-colors cursor-pointer">Blog</li>
+                <li className="hover:text-amber-400 transition-colors cursor-pointer">Blog</li>
               </ul>
             </div>
 
