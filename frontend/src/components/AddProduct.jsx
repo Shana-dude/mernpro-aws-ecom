@@ -98,7 +98,7 @@ export default function AddProducts() {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full py-3 rounded-lg text-white ${
+          className={`w-full text-black py-3 rounded-lg text-white ${
             loading ? "bg-gray-400" : "bg-blue-200 hover:bg-blue-700"
           }`}
         >
