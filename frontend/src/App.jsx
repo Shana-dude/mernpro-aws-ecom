@@ -60,7 +60,7 @@ function App() {
               {isLoggedIn ? (
                 <button
                   onClick={logout}
-                  className="bg-red-600 hover:bg-red-500 text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors"
+                  className="bg-white hover:bg-gray-200 text-black px-4 sm:px-5 py-2 rounded-md text-sm sm:text-base font-semibold transition-colors border-2 border-gray-400 shadow-sm"
                 >
                   Logout
                 </button>
