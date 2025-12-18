@@ -17,7 +17,7 @@ function App() {
     return saved ? JSON.parse(saved) : [];
   });
 
-  // 🔐 AUTH STATE (JWT BASED)
+  // 🔐 AUTH STATE
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
@@ -36,197 +36,160 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
+
       {/* ================= HEADER ================= */}
-   <header className="bg-zinc-800 text-gray-200 py-4 px-8 shadow-md flex flex-wrap items-center justify-between">
-  {/* Brand */}
-  <Link
-    to="/"
-    className="text-2xl font-semibold tracking-wide hover:text-amber-400 transition"
-  >
-    🛖 SHANA HOME MADE PRODUCT
-  </Link>
-
-  {/* Right Section */}
-  <div className="flex items-center gap-4 mt-2 md:mt-0">
-
-    {/* Cart */}
-    <Link
-      to="/cart"
-      className="px-4 py-1 rounded bg-zinc-200 hover:bg-zinc-200 text-base transition"
-    >
-      Cart ({cart.length})
-    </Link>
-
-    {/* Auth buttons */}
-    {isLoggedIn ? (
-      <button
-        onClick={logout}
-        className="px-4 py-1 bg-green-200 hover:bg-green-500 rounded text-sm font-medium transition"
-      >
-        Logout
-      </button>
-    ) : (
-      <>
+      <header className="bg-zinc-800 text-gray-200 py-4 px-8 shadow-md flex flex-wrap items-center justify-between">
         <Link
-          to="/login"
-          className="px-4 py-1 bg-green-200 hover:bg-green-500 rounded text-sm font-medium transition"
+          to="/"
+          className="text-2xl font-semibold tracking-wide hover:text-amber-400 transition"
         >
-          Login
+          🛖 SHANA HOME MADE PRODUCT
         </Link>
 
-        <Link
-          to="/register"
-          className="px-4 py-1 bg-blue-200 hover:bg-blue-500 rounded text-sm font-medium transition"
-        >
-          Register
-        </Link>
-      </>
-    )}
+        <div className="flex items-center gap-4 mt-2 md:mt-0">
+          <Link
+            to="/cart"
+            className="px-4 py-1 rounded bg-zinc-200 text-black"
+          >
+            Cart ({cart.length})
+          </Link>
 
-    {/* Add Product */}
-    <Link
-      to="/addproduct"
-      className="px-4 py-1 bg-amber-200 hover:bg-amber-300 text-black rounded text-sm font-semibold transition"
-    >
-      Add Product
-    </Link>
-  </div>
-</header>
+          {isLoggedIn ? (
+            <button
+              onClick={logout}
+              className="px-4 py-1 bg-green-200 hover:bg-green-500 rounded text-sm"
+            >
+              Logout
+            </button>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="px-4 py-1 bg-green-200 hover:bg-green-500 rounded text-sm"
+              >
+                Login
+              </Link>
 
+              <Link
+                to="/register"
+                className="px-4 py-1 bg-blue-200 hover:bg-blue-500 rounded text-sm"
+              >
+                Register
+              </Link>
+            </>
+          )}
 
-      {/* ================= MAIN ================= */}
-      <main className="flex-1 px-4 py-6">
-        <Routes>
-          <Route
-            path="/"
-            element={<Products cart={cart} setCart={setCart} />}
-          />
-          <Route
-            path="/product/:id"
-            element={<Product cart={cart} setCart={setCart} />}
-          />
+          <Link
+            to="/addproduct"
+            className="px-4 py-1 bg-amber-200 hover:bg-amber-300 text-black rounded text-sm"
+          >
+            Add Product
+          </Link>
+        </div>
+      </header>
 
-          {/* AUTH */}
-          <Route
-            path="/login"
-            element={<Login setIsLoggedIn={setIsLoggedIn} />}
-          />
-          <Route path="/register" element={<Register />} />
+      {/* ================= MAIN (FIXED) ================= */}
+      <main className="flex-1 min-h-[70vh] flex justify-center px-4 py-10">
+        <div className="w-full max-w-7xl">
+          <Routes>
+            <Route
+              path="/"
+              element={<Products cart={cart} setCart={setCart} />}
+            />
 
-          {/* PROTECTED */}
-          <Route
-            path="/cart"
-            element={
-              <ProtectedRoute>
-                <Cart cart={cart} setCart={setCart} />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/buynow/:id"
-            element={
-              <ProtectedRoute>
-                <BuyNow />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/addproduct"
-            element={
-              <ProtectedRoute>
-                <AddProduct />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
+            <Route
+              path="/product/:id"
+              element={<Product cart={cart} setCart={setCart} />}
+            />
+
+            <Route
+              path="/login"
+              element={<Login setIsLoggedIn={setIsLoggedIn} />}
+            />
+
+            <Route path="/register" element={<Register />} />
+
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <Cart cart={cart} setCart={setCart} />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/buynow/:id"
+              element={
+                <ProtectedRoute>
+                  <BuyNow />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/addproduct"
+              element={
+                <ProtectedRoute>
+                  <AddProduct />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </div>
       </main>
 
       {/* ================= FOOTER ================= */}
-     <footer className="bg-zinc-900 text-gray-300 py-14 px-10">
-  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10">
+      <footer className="bg-zinc-900 text-gray-300 py-14 px-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-10">
+          <div>
+            <h2 className="text-xl font-semibold">SHANA HOME-MADE</h2>
+            <p className="mt-4 text-sm">
+              Freshly made home products crafted with love.
+            </p>
+          </div>
 
-    {/* Brand */}
-    <div>
-      <h2 className="text-xl font-semibold tracking-wide">SHANA HOME-MADE</h2>
-      <p className="mt-4 text-sm leading-6">
-        Freshly made home products crafted with love —
-        pure, safe and full of natural goodness.
-      </p>
-      <button className="mt-4 bg-amber-400 text-black text-sm px-4 py-1 rounded hover:bg-amber-300 transition">
-        read more →
-      </button>
-    </div>
+          <div>
+            <h3 className="font-semibold mb-4">Discover</h3>
+            <ul className="space-y-2 text-sm">
+              <li>Shop</li>
+              <li>Offers</li>
+              <li>Support</li>
+            </ul>
+          </div>
 
-    {/* Discover */}
-    <div>
-      <h3 className="font-semibold mb-4 text-white">Discover</h3>
-      <ul className="space-y-2 text-sm">
-        <li className="hover:text-white cursor-pointer">Shop</li>
-        <li className="hover:text-white cursor-pointer">Our Products</li>
-        <li className="hover:text-white cursor-pointer">Special Offers</li>
-        <li className="hover:text-white cursor-pointer">Support</li>
-      </ul>
-    </div>
+          <div>
+            <h3 className="font-semibold mb-4">About</h3>
+            <ul className="space-y-2 text-sm">
+              <li>Story</li>
+              <li>Team</li>
+              <li>Careers</li>
+            </ul>
+          </div>
 
-    {/* About */}
-    <div>
-      <h3 className="font-semibold mb-4 text-white">About</h3>
-      <ul className="space-y-2 text-sm">
-        <li className="hover:text-white cursor-pointer">Our Story</li>
-        <li className="hover:text-white cursor-pointer">Team</li>
-        <li className="hover:text-white cursor-pointer">Careers</li>
-        <li className="hover:text-white cursor-pointer">Blog</li>
-      </ul>
-    </div>
+          <div>
+            <h3 className="font-semibold mb-4">Resources</h3>
+            <ul className="space-y-2 text-sm">
+              <li>Privacy</li>
+              <li>Shipping</li>
+              <li>Ingredients</li>
+            </ul>
+          </div>
 
-    {/* Resources */}
-    <div>
-      <h3 className="font-semibold mb-4 text-white">Resources</h3>
-      <ul className="space-y-2 text-sm">
-        <li className="hover:text-white cursor-pointer">Ingredients</li>
-        <li className="hover:text-white cursor-pointer">Hand-Made Quality</li>
-        <li className="hover:text-white cursor-pointer">Shipping</li>
-        <li className="hover:text-white cursor-pointer">Privacy</li>
-      </ul>
-    </div>
+          <div>
+            <h3 className="font-semibold mb-4">Social</h3>
+            <ul className="space-y-2 text-sm">
+              <li>Instagram</li>
+              <li>WhatsApp</li>
+              <li>YouTube</li>
+            </ul>
+          </div>
+        </div>
 
-    {/* Social */}
-    <div>
-      <h3 className="font-semibold mb-4 text-white">Social</h3>
-      <ul className="space-y-2 text-sm">
-        <li className="hover:text-white cursor-pointer">Facebook</li>
-        <li className="hover:text-white cursor-pointer">Instagram</li>
-        <li className="hover:text-white cursor-pointer">WhatsApp</li>
-        <li className="hover:text-white cursor-pointer">YouTube</li>
-      </ul>
-    </div>
-  </div>
-
-  {/* Partners */}
-  <div className="border-t border-zinc-700 mt-10 pt-8 text-sm text-center">
-    <p className="text-zinc-400 mb-2">Our Partners:</p>
-    <p className="space-x-5">
-      <span className="hover:text-white cursor-pointer">Partner 01</span>
-      <span className="hover:text-white cursor-pointer">Partner 02</span>
-      <span className="hover:text-white cursor-pointer">Partner 03</span>
-      <span className="text-amber-300 hover:text-amber-200 cursor-pointer">
-        See All →
-      </span>
-    </p>
-  </div>
-
-  {/* Copyright */}
-  <div className="border-t border-zinc-700 mt-10 pt-8 flex flex-col md:flex-row justify-between text-xs text-zinc-500">
-    <p>©2024 Shana Home-Made Products | All rights reserved</p>
-
-    <div className="space-x-6 mt-4 md:mt-0">
-      <span className="hover:text-white cursor-pointer">Terms</span>
-      <span className="hover:text-white cursor-pointer">Privacy</span>
-      <span className="hover:text-white cursor-pointer">Compliance</span>
-    </div>
-  </div>
-</footer>
-
+        <div className="border-t border-zinc-700 mt-10 pt-6 text-center text-xs">
+          ©2024 Shana Home-Made Products. All rights reserved.
+        </div>
+      </footer>
     </div>
   );
 }
