@@ -55,7 +55,7 @@ export default function AddProducts() {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
       <form
         onSubmit={handleSubmit}
-        className="bg-white w-full max-w-md p-6 rounded-2xl shadow-lg space-y-4"
+        className="bg-white text-black w-full max-w-md p-6 rounded-2xl shadow-lg space-y-4"
       >
         <h2 className="text-2xl font-bold text-center">Add Product</h2>
 
