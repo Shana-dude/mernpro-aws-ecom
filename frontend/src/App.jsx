@@ -40,7 +40,7 @@ function App() {
       {/* ================= HEADER ================= */}
       <header className="h-15 bg-slate-300 text-black flex items-center justify-between px-6">
         <Link to="/" className="text-2xl font-bold">
-          SHANA HOME MADE PRODUCT
+          🛖SHANA HOME MADE PRODUCT
         </Link>
 
         <div className="flex gap-3 items-center">
