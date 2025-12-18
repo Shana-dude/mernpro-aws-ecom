@@ -37,23 +37,31 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       {/* ================= HEADER ================= */}
-     <header className="bg-zinc-900 text-gray-200 py-4 px-6 shadow flex flex-wrap items-center justify-between">
-  <Link to="/" className="text-2xl font-bold hover:text-amber-400 transition">
-    🛖 SHANA HOME-MADE PRODUCT
+    <header className="bg-zinc-800 text-gray-200 py-4 px-8 shadow-md flex flex-wrap items-center justify-between">
+  {/* Brand */}
+  <Link
+    to="/"
+    className="text-2xl font-semibold tracking-wide hover:text-amber-400 transition"
+  >
+    🛖 SHANA HOME MADE PRODUCT
   </Link>
 
+  {/* Right Section */}
   <div className="flex items-center gap-4 mt-2 md:mt-0">
+
+    {/* Cart */}
     <Link
       to="/cart"
-      className="text-lg font-medium px-3 py-1 rounded bg-zinc-700 hover:bg-zinc-600 transition"
+      className="px-4 py-1 rounded bg-zinc-700 hover:bg-zinc-600 text-base transition"
     >
       Cart ({cart.length})
     </Link>
 
+    {/* Auth buttons */}
     {isLoggedIn ? (
       <button
         onClick={logout}
-        className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded"
+        className="px-4 py-1 bg-red-600 hover:bg-red-500 rounded text-sm font-medium transition"
       >
         Logout
       </button>
@@ -61,23 +69,24 @@ function App() {
       <>
         <Link
           to="/login"
-          className="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded font-medium"
+          className="px-4 py-1 bg-green-600 hover:bg-green-500 rounded text-sm font-medium transition"
         >
           Login
         </Link>
 
         <Link
           to="/register"
-          className="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded font-medium"
+          className="px-4 py-1 bg-blue-600 hover:bg-blue-500 rounded text-sm font-medium transition"
         >
           Register
         </Link>
       </>
     )}
 
+    {/* Add Product */}
     <Link
       to="/addproduct"
-      className="bg-amber-400 hover:bg-amber-300 text-black font-semibold px-3 py-1 rounded"
+      className="px-4 py-1 bg-amber-400 hover:bg-amber-300 text-black rounded text-sm font-semibold transition"
     >
       Add Product
     </Link>
