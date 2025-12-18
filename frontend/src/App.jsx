@@ -52,7 +52,7 @@ function App() {
     {/* Cart */}
     <Link
       to="/cart"
-      className="px-4 py-1 rounded bg-zinc-700 hover:bg-zinc-600 text-base transition"
+      className="px-4 py-1 rounded bg-zinc-200 hover:bg-zinc-200 text-base transition"
     >
       Cart ({cart.length})
     </Link>
@@ -61,7 +61,7 @@ function App() {
     {isLoggedIn ? (
       <button
         onClick={logout}
-        className="px-4 py-1 bg-red-600 hover:bg-red-500 rounded text-sm font-medium transition"
+        className="px-4 py-1 bg-red-200 hover:bg-red-500 rounded text-sm font-medium transition"
       >
         Logout
       </button>
@@ -69,14 +69,14 @@ function App() {
       <>
         <Link
           to="/login"
-          className="px-4 py-1 bg-green-600 hover:bg-green-500 rounded text-sm font-medium transition"
+          className="px-4 py-1 bg-green-200 hover:bg-green-500 rounded text-sm font-medium transition"
         >
           Login
         </Link>
 
         <Link
           to="/register"
-          className="px-4 py-1 bg-blue-600 hover:bg-blue-500 rounded text-sm font-medium transition"
+          className="px-4 py-1 bg-blue-200 hover:bg-blue-500 rounded text-sm font-medium transition"
         >
           Register
         </Link>
@@ -86,7 +86,7 @@ function App() {
     {/* Add Product */}
     <Link
       to="/addproduct"
-      className="px-4 py-1 bg-amber-400 hover:bg-amber-300 text-black rounded text-sm font-semibold transition"
+      className="px-4 py-1 bg-amber-200 hover:bg-amber-300 text-black rounded text-sm font-semibold transition"
     >
       Add Product
     </Link>
