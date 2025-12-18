@@ -11,23 +11,19 @@ import AddProduct from "./components/AddProduct";
 import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
-  // 🛒 CART STATE
   const [cart, setCart] = useState(() => {
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
   });
 
-  // 🔐 AUTH STATE
   const [isLoggedIn, setIsLoggedIn] = useState(
     Boolean(localStorage.getItem("token"))
   );
 
-  // 💾 SAVE CART
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // 🚪 LOGOUT
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -40,17 +36,14 @@ function App() {
       {/* ================= HEADER ================= */}
       <header className="bg-zinc-800 text-gray-200 shadow-md">
         <div className="max-w-7xl mx-auto px-6 py-4 flex flex-wrap items-center justify-between">
-          <Link
-            to="/"
-            className="text-2xl font-semibold tracking-wide hover:text-amber-400 transition"
-          >
+          <Link to="/" className="text-2xl font-semibold hover:text-amber-400">
             🛖 SHANA HOME MADE PRODUCT
           </Link>
 
-          <div className="flex items-center gap-4 mt-2 md:mt-0">
+          <div className="flex items-center gap-4">
             <Link
               to="/cart"
-              className="px-4 py-1 rounded bg-zinc-200 text-black"
+              className="px-4 py-1 bg-zinc-200 text-black rounded"
             >
               Cart ({cart.length})
             </Link>
@@ -58,23 +51,16 @@ function App() {
             {isLoggedIn ? (
               <button
                 onClick={logout}
-                className="px-4 py-1 bg-green-200 hover:bg-green-400 rounded text-sm font-medium"
+                className="px-4 py-1 bg-green-200 rounded"
               >
                 Logout
               </button>
             ) : (
               <>
-                <Link
-                  to="/login"
-                  className="px-4 py-1 bg-green-200 hover:bg-green-400 rounded text-sm font-medium"
-                >
+                <Link to="/login" className="px-4 py-1 bg-green-200 rounded">
                   Login
                 </Link>
-
-                <Link
-                  to="/register"
-                  className="px-4 py-1 bg-blue-200 hover:bg-blue-400 rounded text-sm font-medium"
-                >
+                <Link to="/register" className="px-4 py-1 bg-blue-200 rounded">
                   Register
                 </Link>
               </>
@@ -82,7 +68,7 @@ function App() {
 
             <Link
               to="/addproduct"
-              className="px-4 py-1 bg-amber-200 hover:bg-amber-300 text-black rounded text-sm font-semibold"
+              className="px-4 py-1 bg-amber-200 rounded"
             >
               Add Product
             </Link>
