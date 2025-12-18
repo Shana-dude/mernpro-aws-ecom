@@ -37,49 +37,53 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col bg-gray-100">
       {/* ================= HEADER ================= */}
-      <header className="bg-slate-200 py-4 px-6 shadow-sm flex flex-wrap items-center justify-between">
-        <Link to="/" className="text-3xl font-bold text-blue-700">
-          🛖 SHANA HOME MADE PRODUCT
+      <header className="bg-zinc-900 text-gray-200 py-4 px-6 shadow flex flex-wrap items-center justify-between">
+  <Link to="/" className="text-2xl font-bold hover:text-amber-400 transition">
+    🛖 SHANA HOME-MADE PRODUCT
+  </Link>
+
+  <div className="flex items-center gap-4 mt-2 md:mt-0">
+    <Link
+      to="/cart"
+      className="text-lg font-medium px-3 py-1 rounded bg-zinc-700 hover:bg-zinc-600 transition"
+    >
+      Cart ({cart.length})
+    </Link>
+
+    {isLoggedIn ? (
+      <button
+        onClick={logout}
+        className="bg-red-600 hover:bg-red-500 text-white px-3 py-1 rounded"
+      >
+        Logout
+      </button>
+    ) : (
+      <>
+        <Link
+          to="/login"
+          className="bg-green-600 hover:bg-green-500 text-white px-3 py-1 rounded font-medium"
+        >
+          Login
         </Link>
 
-        <div className="flex items-center gap-4 mt-2 md:mt-0">
-          <Link
-            to="/cart"
-            className="text-xl font-semibold px-3 py-1 rounded bg-blue-100"
-          >
-            Cart ({cart.length})
-          </Link>
+        <Link
+          to="/register"
+          className="bg-blue-600 hover:bg-blue-500 text-white px-3 py-1 rounded font-medium"
+        >
+          Register
+        </Link>
+      </>
+    )}
 
-          {isLoggedIn ? (
-            <button onClick={logout} className="bg-red-500 text-white px-3 py-1 rounded">
-              Logout
-            </button>
-          ) : (
-            <>
-              <Link
-                to="/login"
-                className="bg-green-400 text-black font-semibold px-3 py-1 rounded"
-              >
-                Login
-              </Link>
+    <Link
+      to="/addproduct"
+      className="bg-amber-400 hover:bg-amber-300 text-black font-semibold px-3 py-1 rounded"
+    >
+      Add Product
+    </Link>
+  </div>
+</header>
 
-              <Link
-                to="/register"
-                className="bg-blue-400 text-white font-semibold px-3 py-1 rounded"
-              >
-                Register
-              </Link>
-            </>
-          )}
-
-          <Link
-            to="/addproduct"
-            className="bg-yellow-400 text-black font-semibold px-3 py-1 rounded"
-          >
-            Add Product
-          </Link>
-        </div>
-      </header>
 
       {/* ================= MAIN ================= */}
       <main className="flex-1 px-4 py-6">
