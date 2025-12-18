@@ -34,7 +34,7 @@ function App() {
     <div className="min-h-screen flex flex-col bg-gray-100">
 
       {/* ================= HEADER ================= */}
-      <header className="bg-zinc-900 text-gray-200 shadow-md sticky top-0 z-50">
+      <header className="bg-zinc-900 text-gray-200 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
@@ -92,76 +92,84 @@ function App() {
       </header>
 
       {/* ================= MAIN ================= */}
-      <main className="flex-1">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <main className="flex-1 flex flex-col">
+        <Routes>
+          {/* PRODUCTS - Full Width */}
+          <Route
+            path="/"
+            element={
+              <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+                <Products cart={cart} setCart={setCart} />
+              </div>
+            }
+          />
 
-          <Routes>
-            {/* PRODUCTS */}
-            <Route
-              path="/"
-              element={<Products cart={cart} setCart={setCart} />}
-            />
+          <Route
+            path="/product/:id"
+            element={
+              <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
+                <Product cart={cart} setCart={setCart} />
+              </div>
+            }
+          />
 
-            <Route
-              path="/product/:id"
-              element={<Product cart={cart} setCart={setCart} />}
-            />
+          {/* AUTH (CENTERED WITH FULL HEIGHT) */}
+          <Route
+            path="/login"
+            element={
+              <div className="flex-1 flex justify-center items-center px-4 py-8">
+                <Login setIsLoggedIn={setIsLoggedIn} />
+              </div>
+            }
+          />
 
-            {/* AUTH (CENTERED) */}
-            <Route
-              path="/login"
-              element={
-                <div className="flex justify-center items-center min-h-[60vh]">
-                  <Login setIsLoggedIn={setIsLoggedIn} />
-                </div>
-              }
-            />
+          <Route
+            path="/register"
+            element={
+              <div className="flex-1 flex justify-center items-center px-4 py-8">
+                <Register />
+              </div>
+            }
+          />
 
-            <Route
-              path="/register"
-              element={
-                <div className="flex justify-center items-center min-h-[60vh]">
-                  <Register />
-                </div>
-              }
-            />
-
-            {/* PROTECTED */}
-            <Route
-              path="/cart"
-              element={
-                <ProtectedRoute>
+          {/* PROTECTED - Full Width */}
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
                   <Cart cart={cart} setCart={setCart} />
-                </ProtectedRoute>
-              }
-            />
+                </div>
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/buynow/:id"
-              element={
-                <ProtectedRoute>
+          <Route
+            path="/buynow/:id"
+            element={
+              <ProtectedRoute>
+                <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12">
                   <BuyNow />
-                </ProtectedRoute>
-              }
-            />
+                </div>
+              </ProtectedRoute>
+            }
+          />
 
-            <Route
-              path="/addproduct"
-              element={
-                <ProtectedRoute>
-                  <div className="flex justify-center items-center min-h-[60vh]">
-                    <AddProduct />
-                  </div>
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-
-        </div>
+          <Route
+            path="/addproduct"
+            element={
+              <ProtectedRoute>
+                <div className="flex-1 flex justify-center items-center px-4 py-8">
+                  <AddProduct />
+                </div>
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
       </main>
 
       {/* ================= FOOTER ================= */}
-      <footer className="bg-zinc-900 text-gray-300">
+      <footer className="bg-zinc-900 text-gray-300 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 text-center text-sm">
           <p>© 2024 Shana Home-Made Products | All rights reserved</p>
         </div>
