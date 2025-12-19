@@ -57,7 +57,7 @@ export default function AddProducts() {
         onSubmit={handleSubmit}
         className="bg-white text-black w-full max-w-md p-6 rounded-2xl shadow-lg space-y-4"
       >
-        <h2 className="text-2xl text-black font-bold text-center">Add Product</h2>
+        <h2 className="text-2xl text-black font-bold text-center">Add Product in db </h2>
 
         <input
           type="text"
