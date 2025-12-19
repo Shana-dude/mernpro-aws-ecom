@@ -68,14 +68,14 @@ function App() {
                 <>
                   <Link
                     to="/login"
-                    className="bg-green-600 hover:bg-green-500 text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors"
+                    className="bg-green-200 hover:bg-green-200 text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors"
                   >
                     Login
                   </Link>
 
                   <Link
                     to="/register"
-                    className="bg-blue-600 hover:bg-blue-500 text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors"
+                    className="bg-blue-200 hover:bg-blue-200 text-white px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-medium transition-colors"
                   >
                     Register
                   </Link>
@@ -84,7 +84,7 @@ function App() {
 
               <Link
                 to="/addproduct"
-                className="bg-amber-500 hover:bg-amber-400 text-black px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-semibold transition-colors"
+                className="bg-amber-200 hover:bg-amber-100 text-black px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base font-semibold transition-colors"
               >
                 Add Product
               </Link>
