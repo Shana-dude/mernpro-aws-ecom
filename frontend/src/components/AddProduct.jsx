@@ -57,7 +57,7 @@ export default function AddProducts() {
         onSubmit={handleSubmit}
         className="bg-white text-black w-full max-w-md p-6 rounded-2xl shadow-lg space-y-4"
       >
-        <h2 className="text-2xl text-black font-bold text-center">Add Product in db </h2>
+        <h2 className="text-2xl text-black font-bold text-center">Add Product</h2>
 
         <input
           type="text"
@@ -98,7 +98,7 @@ export default function AddProducts() {
         <button
           type="submit"
           disabled={loading}
-          className={`w-full text-black py-3 rounded-lg text-white ${
+          className={`w-full text-black font-bold py-3 rounded-lg text-black ${
             loading ? "bg-gray-400" : "bg-blue-200 hover:bg-blue-700"
           }`}
         >
